@@ -28,7 +28,7 @@
 <body>
 
 <h1>Privacy Policy — Uzak</h1>
-<p class="updated">Last updated September 26, 2026.</p>
+<p class="updated">Last updated PUBLICATION_DATE.</p>
 
 <p>Uzak has no account and no server of its own. It never sees which apps you use, and nothing from Apple's Screen Time system — no app names, no usage figures, nothing about the apps you block — is ever sent anywhere. A few outside services do receive a small amount of data from the app. Every one of them is listed below, with what it gets, why, and whether you can switch it off.</p>
 
@@ -53,7 +53,23 @@
 <p>If you buy Uzak Pro, Apple's own purchase system handles the payment. We never see your card, your name, your email or your Apple Account. The purchase is then verified through RevenueCat, a purchase-management service, so the app can unlock Pro and restore it on your other devices. RevenueCat receives the purchase record Apple issues — which product, when it was bought, whether it is still active or in a free trial — along with basic technical details such as your iOS version, the app version and your App Store country. All of it is filed under the app ID described above. That ID is not tied to your name or your Apple Account; at RevenueCat it only keeps your purchases together. This is needed for Pro to work, so it happens whether or not you allow usage statistics.</p>
 
 <h2>Usage statistics (Amplitude) — only if you say yes</h2>
-<p>The first time you open Uzak it asks whether it may send usage statistics. If you say yes, the app sends events to Amplitude, an analytics service: when you open and close the app, which setup and purchase screens you reach, whether a purchase or restore started, went through, was cancelled or failed, how long your focus sessions run (in rounded steps, such as 15, 30 or 60 minutes), whether your city reached the free limit, and whether you have Pro. Each event carries the app ID, a second random ID that Amplitude makes on your phone, your language, phone model, iOS version and the app version. Neither is Apple's advertising or device identifier.</p>
+<p>The first time you open Uzak it asks whether it may send usage statistics. If you say yes, the app sends Amplitude, an analytics service, the events below and nothing else. Nothing is sent before you answer, and no event ever says which apps you have, which you chose to block, or which one you tried to open.</p>
+<ul>
+  <li>When you open and close the app (Amplitude's own session start and end).</li>
+  <li><code>onboarding_step_viewed</code> — which setup screen you reached: the welcome screen, each of the three questions, the offer, or the Screen Time permission, and its place in that order. Your answers to the questions are not sent. The welcome screen comes before the question about statistics, so it is sent right after you say yes.</li>
+  <li><code>consent_granted</code> — that you said yes to that question.</li>
+  <li><code>onboarding_completed</code> — that you finished setup.</li>
+  <li><code>paywall_shown</code> — that the Pro offer appeared, why (during setup, because your city reached the free limit, or because you opened it), whether the one-time purchase was offered, and, when known, whether it was our standard offer or another one.</li>
+  <li><code>paywall_dismissed</code> — that you closed the offer without buying, and how many seconds it was open (counted up to 120).</li>
+  <li><code>purchase_started</code>, <code>purchase_completed</code>, <code>purchase_cancelled</code>, <code>purchase_failed</code> — which product (yearly, monthly or one-time) and its type, whether a completed purchase started a free trial, and for a failure a general reason (pending, network, not verified, or other). Never a price or an amount.</li>
+  <li><code>restore_completed</code> — whether restoring found a purchase, and whether it was started from the offer, from Settings, or by the app on its own.</li>
+  <li><code>session_started</code> — the planned length of a focus session, rounded up to 15, 30, 60, 120 or 240 minutes.</li>
+  <li><code>session_completed</code> — the planned and actual length in those same steps, whether the session was long enough to count for your city, and the time it ended (to the second, in UTC).</li>
+  <li><code>session_broken</code> — for a session that ended early: how long it ran (in those steps), how it ended (you ended it in the app, you turned off Screen Time, or you broke the seal on a shielded app) and the time it ended.</li>
+  <li><code>city_cap_reached</code> — that your city reached the free limit, and whether you have Pro.</li>
+  <li><code>review_prompt_requested</code> — that the app asked iOS to show the rating prompt, which it does at most once. The app cannot tell whether the prompt appeared or what you rated.</li>
+</ul>
+<p>Alongside the events, Amplitude keeps one fact about you: whether you have Pro (<code>is_pro</code>), updated when that changes. Each event carries the app ID, a second random ID that Amplitude makes on your phone, your language, phone model, iOS version and the app version. Neither is Apple's advertising or device identifier.</p>
 <p>Amplitude also receives the IP address the statistics are sent from, and uses it to estimate an approximate location: your country, region or city. The app never asks for location permission and never sends your precise location.</p>
 <p>We use these statistics to see where people get stuck during setup, whether focus sessions work as intended, and which offers people choose. If you say no, nothing is sent to Amplitude and it is never started. You can change your answer at any time with "Share usage statistics" in the app's Settings; when you turn it off, nothing more is sent.</p>
 
